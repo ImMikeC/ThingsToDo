@@ -2,6 +2,7 @@ import React from "react";
 import "./styles/global.css";
 import { Button, Card, Form } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { FaCheck, FaTimes } from 'react-icons/fa'
 
 
 function Todo({ todo, index, markTodo, removeTodo }) {
@@ -12,8 +13,8 @@ function Todo({ todo, index, markTodo, removeTodo }) {
     >
       <span style={{ textDecoration: todo.isDone ? "line-through" : "" }}>{todo.text}</span>
       <div>
-        <Button variant="outline-success" onClick={() => markTodo(index)}>✓</Button>{' '}
-        <Button variant="outline-danger" onClick={() => removeTodo(index)}>✕</Button>
+        <Button variant="outline-success" onClick={() => markTodo(index)}><FaCheck /></Button>{' '}
+        <Button variant="outline-danger" onClick={() => removeTodo(index)}><FaTimes /></Button>
       </div>
     </div>
   );
@@ -32,10 +33,10 @@ function FormTodo({ addTodo }) {
   return (
     <Form onSubmit={handleSubmit}> 
     <Form.Group>
-      <Form.Control type="text" className="input" value={value} onChange={e => setValue(e.target.value)} placeholder="Agrega una tarea" />
+      <Form.Control type="text" className="input" value={value} onChange={e => setValue(e.target.value)} placeholder="Write your task" />
     </Form.Group>
     <Button variant="danger mb-3" type="submit" size="lg" block>
-      Agregar
+      Add
     </Button>
   </Form>
   );
@@ -44,8 +45,8 @@ function FormTodo({ addTodo }) {
 function App() {
   const [todos, setTodos] = React.useState([
     {
-      text: "Limpiar la cocina",
-      isDone: false
+      text: "Lavar el auto",
+      isDone: true
     }
   ]);
 
@@ -68,7 +69,7 @@ function App() {
 
   return (
     <div className="app">
-      <div className="container">
+      <div className="container col-md-6">
         <h1 className="text-center mb-4">To Do List React</h1>
         <FormTodo addTodo={addTodo} />
         <div>
@@ -80,7 +81,7 @@ function App() {
                 index={index}
                 todo={todo}
                 markTodo={markTodo}
-                removeTodo={removeTodo}
+                removeTodo={removeTodo}                
                 />
               </Card.Body>
             </Card>
@@ -89,6 +90,7 @@ function App() {
       </div>
     </div>
   );
+  
 }
 
 export default App;
