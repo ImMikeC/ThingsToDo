@@ -1,0 +1,12 @@
+
+.app {
+    padding: 50px;
+    background-color:grey;
+  }
+  
+  .todo {
+    align-items: center;
+    display: flex;
+    font-size: 30px;
+    justify-content: space-between;
+  }
